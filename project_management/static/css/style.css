@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.top-menu {
+    display: flex; /* Включаем flexbox для горизонтального выравнивания */
+    align-items: center; /* Выравниваем элементы по вертикали */
+    justify-content: space-between; /* Разделяем навигацию и кнопку корзины */
+    padding: 10px 20px; /* Внутренние отступы для эстетичного вида */
+    background-color: #fff; /* Фон меню */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+    position: sticky; /* Меню остаётся закреплённым при прокрутке */
+    top: 0; /* Фиксируем меню сверху */
+    z-index: 1000; /* Поверх остального контента */
+}
+
+.navigation-menu ul {
+    display: flex; /* Выравниваем список горизонтально */
+    list-style: none; /* Убираем маркеры списка */
+    margin: 0; /* Убираем внешние отступы */
+    padding: 0; /* Убираем внутренние отступы */
+    gap: 15px; /* Расстояние между пунктами меню */
+}
+
+.navigation-menu a {
+    text-decoration: none; /* Убираем подчёркивание ссылок */
+    color: #000; /* Цвет текста */
+    font-weight: 500; /* Средний шрифт */
+    transition: color 0.3s; /* Анимация для ховера */
+}
+
+.navigation-menu a:hover {
+    color: #f60; /* Цвет при наведении */
+}
+
+.basket {
+    margin-left: auto; /* Отодвигаем кнопку корзины к правому краю */
+}
+
+.basket-button {
+    background-color: #f60; /* Оранжевый фон */
+    color: #fff; /* Белый текст */
+    border: none; /* Убираем границу */
+    border-radius: 20px; /* Закругляем углы */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    font-size: 16px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s; /* Анимация фона при наведении */
+}
+
+.basket-button:hover {
+    background-color: #e65500; /* Более тёмный оттенок оранжевого */
+}
+
+.products-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Центрирует элементы по горизонтали */
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.product-category-name {
+    font-size: 1.5em;
+    color: #555;
+    margin-bottom: 10px;
+    margin: 10px 0; /* Убираем отступы */
+    text-align: start; /* Выравниваем текст по левому краю */
+    width: 100%; /* Занимаем всю ширину */
+    max-width: 1280px; /* Совпадает с шириной сетки */
+    padding-left: 10px; /* Добавляем небольшой отступ от края */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.product-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 карточки в строке */
+    gap: 20px; /* Отступы между карточками */
+    max-width: 1200px; /* Ограничение ширины сетки (300px * 4 карточки + отступы) */
+    width: 100%; /* Заполнение родителя */
+    justify-content: center;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Автоматическая ширина карточки в сетке */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+/* .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+} */
+.product-card h2 {
+    margin: 10px 0;
+    font-size: 1.5em;
+    color: #555;
+}
+.product-card p {
+    margin: 0 15px 10px;
+    color: #777;
+    font-size: 1em;
+}
+.product-card .price {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+.product-card button {
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.product-card button:hover {
+    background: #ff4500;
+}
