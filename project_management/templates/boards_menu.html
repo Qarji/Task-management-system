@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ааааааааа</title>
+    <title>Доски</title>
+    <!-- Подключение файла стилей -->
     <link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
+    <link rel='stylesheet' type='text/css' href="{% static 'css/boards_menu_style.css' %}">
 </head>
 <body>
     <div class="main">
@@ -34,7 +36,22 @@
                 {% endif %}
             </div>
         </div>
-        <h1>Список задач:</h1>
+        <h1>Список досок:</h1>
+        {% for category, products in products_by_category.items %}
+        <section class="products-block">
+            <h2 class="product-category-name">{{ category|title }}</h2>
+            <div class="product-cards">
+                {% for product in products %} 
+                <article class="product-card">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                    <p class="price">Цена: {{ product.price }} ₽</p>
+                    <button>Выбрать</button>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
     </div>
 </body>
 </html>

@@ -105,6 +105,6 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project_management/static')]  # Папка для глобальных файлов (если есть)
 LOGIN_REDIRECT_URL = 'main_menu'  # Куда перенаправлять после авторизации
 LOGOUT_REDIRECT_URL = 'main_menu'  # Куда перенаправлять после выхода
-
+LOGIN_URL = '/login/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

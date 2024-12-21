@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
 
+
+@login_required
 def task_board(request):
+    # Получаем задачи, созданные текущим пользователем
     tasks = Task.objects.filter(user=request.user)
-    return render(request, 'tasks/board.html', {'tasks': tasks})
+    return render(request, 'boards_menu.html', {'tasks': tasks})
 
 def create_task(request):
     if request.method == 'POST':
@@ -16,7 +20,7 @@ def create_task(request):
             return redirect('task_board')  # Перенаправление на доску задач
     else:
         form = TaskForm()
-    return render(request, 'tasks/create_task.html', {'form': form})
+    return render(request, 'create_task.html', {'form': form})
 
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id, user=request.user)
