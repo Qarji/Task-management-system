@@ -12,24 +12,30 @@
     <div class="main">
         <header>
             <div class="header-left">
-                <p>Сеть №1 в России</p>
+                <p>Laxpa</p>
             </div>
         </header>
         <div class="top-menu">
             <nav class="navigation-menu">
                 <ul>
-                    <li><a href="#">Пиццы</a></li>
-                    <li><a href="#">Закуски</a></li>
-                    <li><a href="#">Десерты</a></li>
-                    <li><a href="#">Напитки</a></li>
-                    <li><a href="#">Акции</a></li>
+                    <li><a href="#">Доски</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
                 </ul>
             </nav>
-            <div class="basket">
-                <button class="basket-button">Корзина</button>
+            <div class="login-buttons">
+                {% if user.is_authenticated %}
+                    <p>Добро пожаловать, {{ user.username }}!</p>
+                    <a href="{% url 'logout' %}">Выйти</a>
+                {% else %}
+                    <div class="login-buttons">
+                        <a href="{% url 'register' %}" class="register-button">Регистрация</a>
+                        <a href="{% url 'login' %}" class="auth-button">Авторизация</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
-        <h1>Список товаров</h1>
+        <h1>Список задач:</h1>
     </div>
 </body>
 </html>

@@ -71,6 +71,10 @@ DATABASES = {
 
 # Password validation
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -99,5 +103,8 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project_management/static')]  # Папка для глобальных файлов (если есть)
+LOGIN_REDIRECT_URL = 'main_menu'  # Куда перенаправлять после авторизации
+LOGOUT_REDIRECT_URL = 'main_menu'  # Куда перенаправлять после выхода
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

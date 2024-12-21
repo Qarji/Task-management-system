@@ -40,25 +40,34 @@ h1 {
     color: #f60; /* Цвет при наведении */
 }
 
-.basket {
-    margin-left: auto; /* Отодвигаем кнопку корзины к правому краю */
+.login-buttons {
+    margin-left: auto; /* Выравнивание кнопок */
 }
 
-.basket-button {
-    background-color: #f60; /* Оранжевый фон */
-    color: #fff; /* Белый текст */
-    border: none; /* Убираем границу */
-    border-radius: 20px; /* Закругляем углы */
-    padding: 10px 20px; /* Отступы внутри кнопки */
-    font-size: 16px; /* Размер текста */
-    font-weight: bold; /* Жирный текст */
-    cursor: pointer; /* Указатель при наведении */
-    transition: background-color 0.3s; /* Анимация фона при наведении */
+button {
+    background-color: #f60; /* Общий стиль для всех кнопок */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.basket-button:hover {
-    background-color: #e65500; /* Более тёмный оттенок оранжевого */
+button:hover {
+    background-color: #e65500;
 }
+
+.auth-button {
+    background-color: #007BFF; /* Дополнительный стиль для кнопки авторизации */
+}
+
+.auth-button:hover {
+    background-color: #0056b3; /* Затемнённый синий */
+}
+
 
 .products-block {
     display: flex;

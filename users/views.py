@@ -1,32 +1,35 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm, RegisterForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-def login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('main_menu')  # Перенаправление на главное меню
-            else:
-                form.add_error(None, "Неправильный логин или пароль")
-    else:
-        form = LoginForm()
-    return render(request, 'auth/login.html', {'form': form})
+# Главная страница (пример)
+def main_menu(request):
+    return render(request, 'main_menu.html')  # Убедитесь, что путь к шаблону корректный
 
-def register_view(request):
+# Регистрация
+def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Перенаправление на страницу входа
+            return redirect('login')
     else:
-        form = RegisterForm()
-    return render(request, 'auth/register.html', {'form': form})
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
 
-def main_menu(request):
-    return render(request, 'main_menu.html')
+# Авторизация
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('main_menu')  # Перенаправляем на главную страницу
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+# Выход из системы
+def logout_view(request):
+    logout(request)
+    return redirect('main_menu')  # Перенаправляем на главную страницу
