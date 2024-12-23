@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     # Ваши приложения
     'users',
     'tasks',
+    'boards',
     'projects',
 ]
 

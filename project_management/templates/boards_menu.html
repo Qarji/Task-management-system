@@ -36,22 +36,42 @@
                 {% endif %}
             </div>
         </div>
-        <h1>Список досок:</h1>
-        {% for category, products in products_by_category.items %}
-        <section class="products-block">
-            <h2 class="product-category-name">{{ category|title }}</h2>
-            <div class="product-cards">
-                {% for product in products %} 
-                <article class="product-card">
-                    <h2>{{ product.name }}</h2>
-                    <p>{{ product.description }}</p>
-                    <p class="price">Цена: {{ product.price }} ₽</p>
-                    <button>Выбрать</button>
-                </article>
-                {% endfor %}
+        <div class = "mini-menu">
+            <button class="create-board" onclick="openCreateBoardModal()">Создать +</button>
+            <!-- Модальное окно для создания новой доски -->
+            <div id="createBoardModal" style="display: none;">
+                <form id="createBoardForm" method="post" action="{% url 'create_board' %}">
+                    {% csrf_token %}
+                    <label for="title">Название:</label>
+                    <input type="text" id="title" name="title" required><br>
+
+                    <label for="description">Описание:</label>
+                    <textarea id="description" name="description"></textarea><br>
+
+                    <label for="due_date">Крайний срок:</label>
+                    <input type="date" id="due_date" name="due_date"><br>
+
+                    <button type="submit">Создать доску</button>
+                </form>
             </div>
-        </section>
-        {% endfor %}
+
+            <script>
+                function openCreateBoardModal() {
+                    document.getElementById('createBoardModal').style.display = 'block';
+                }
+            </script>
+        </div>
+        <h1 style="text-align: center;">Мои доски</h1>
+        <div class="board-grid">
+            {% for board in boards %}
+            <div class="board-item">
+                <h3>{{ board.title }}</h3>
+                <p>{{ board.description }}</p>
+                <p>Срок: {{ board.due_date }}</p>
+                <a href="{% url 'view_board' board.id %}">Открыть</a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

@@ -16,11 +16,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for board in boards %}
+            {% for task in tasks %}
             <tr>
-                <td>{{ board.title }}</td>
-                <td>{{ board.description }}</td>
-                <td>{{ board.due_date }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.due_date }}</td>
             </tr>
             {% empty %}
             <tr>
