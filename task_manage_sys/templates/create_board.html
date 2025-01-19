@@ -1,0 +1,10 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="name">Название доски:</label>
+    <input type="text" name="name" required>
+    
+    <label for="description">Описание доски:</label>
+    <textarea name="description"></textarea>
+    
+    <button type="submit">Создать доску</button>
+</form>

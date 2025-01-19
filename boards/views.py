@@ -1,31 +1,26 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Board
-from .forms import BoardForm
-
+from django.contrib.auth.decorators import login_required
 
 @login_required
-def task_board(request):
-    # Получаем задачи, созданные текущим пользователем
-    boards = Board.objects.filter(user=request.user)
-    return render(request, 'boards_menu.html', {'boards': boards})
-
 def create_board(request):
     if request.method == "POST":
         title = request.POST.get("title")
         description = request.POST.get("description")
-        due_date = request.POST.get("due_date")
 
-        # Создаем доску, связывая ее с текущим пользователем
         Board.objects.create(
             title=title,
             description=description,
-            due_date=due_date,
-            user=request.user  # Обязательно используйте текущего пользователя
+            user_id=request.user
         )
         return redirect('boards')
 
 @login_required
-def view_board(request, task_id):
-    task = Board.objects.get(id=task_id, user=request.user)  # Убедитесь, что доска принадлежит пользователю
-    return render(request, 'view_board.html', {'board': task})
+def boards_list(request):
+    boards = request.user.boards.all() 
+    return render(request, 'boards_list.html', {'boards': boards})
+
+@login_required
+def board_detail(request, board_id):
+    board = get_object_or_404(Board, id=board_id, user=request.user)
+    return render(request, 'board_detail.html', {'board': board})

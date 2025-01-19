@@ -14,16 +14,24 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Task",
+            name="Board",
             fields=[
-                ("id", models.AutoField(primary_key=True, serialize=False)),
-                ("title", models.CharField(max_length=25)),
-                ("description", models.TextField(blank=True, null=True)),
-                ("due_date", models.DateField()),
                 (
-                    "user",
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("description", models.TextField(blank=True, null=True)),
+                (
+                    "user_id",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
+                        related_name="boards",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),

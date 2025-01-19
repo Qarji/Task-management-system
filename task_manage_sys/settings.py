@@ -5,28 +5,26 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-v2e=dzwf1k#q#8pw6s%af!%n12$@$lh)_9@8k_@7@s(ro@c4oo"
+SECRET_KEY = "django-insecure-a8&+y#q*5cs$5ak#yhn*3h!blj-!awzbmmf2otfn60@omkitec"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Ваши приложения
-    'users',
-    'tasks',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     'boards',
-    'projects',
+    'tasks',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -39,12 +37,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "project_management.urls"
+ROOT_URLCONF = "task_manage_sys.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'project_management/templates'],
+        "DIRS": [BASE_DIR / 'task_manage_sys/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -57,7 +55,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "project_management.wsgi.application"
+WSGI_APPLICATION = "task_manage_sys.wsgi.application"
+
+
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -70,11 +72,9 @@ DATABASES = {
     }
 }
 
-# Password validation
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-]
+# Password validation
+# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -93,6 +93,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
+# https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
@@ -102,8 +103,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'project_management/static')]  # Папка для глобальных файлов (если есть)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'task_manage_sys/static')]  # Папка для глобальных файлов (если есть)
 LOGIN_REDIRECT_URL = 'main_menu'  # Куда перенаправлять после авторизации
 LOGOUT_REDIRECT_URL = 'main_menu'  # Куда перенаправлять после выхода
 LOGIN_URL = '/login/'

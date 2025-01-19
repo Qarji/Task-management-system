@@ -1,0 +1,24 @@
+<h2>Ваши доски</h2>
+<ul>
+    {% for board in boards %}
+        <li>
+            <a href="{% url 'board_detail' board_id=board.id %}">{{ board.title }}</a>
+        </li>
+    {% empty %}
+        <li>У вас пока нет досок.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>Создать новую доску</h3>
+<form id="createBoardForm" method="post" action="{% url 'create_board' %}">
+    {% csrf_token %}
+    <label for="title">Название:</label>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="description">Описание:</label>
+    <textarea id="description" name="description"></textarea><br>
+
+    <button type="submit">Создать доску</button>
+</form>
